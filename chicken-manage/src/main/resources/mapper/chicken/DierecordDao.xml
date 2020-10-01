@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.DierecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.DierecordEntity" id="dierecordMap">
+        <result property="id" column="id"/>
+        <result property="chickenName" column="chicken_name"/>
+        <result property="category" column="category"/>
+        <result property="dailyDate" column="daily_date"/>
+        <result property="dieNum" column="die_num"/>
+        <result property="dieReason" column="die_reason"/>
+        <result property="remarks" column="remarks"/>
+        <result property="recorder" column="recorder"/>
+    </resultMap>
+
+
+</mapper>

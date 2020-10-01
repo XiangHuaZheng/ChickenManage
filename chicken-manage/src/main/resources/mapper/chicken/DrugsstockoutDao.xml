@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.DrugsstockoutDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.DrugsstockoutEntity" id="drugsstockoutMap">
+        <result property="outDate" column="out_date"/>
+        <result property="outNo" column="out_no"/>
+        <result property="outCategory" column="out_category"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="stockInNo" column="stock_in_no"/>
+        <result property="name" column="name"/>
+        <result property="category" column="category"/>
+        <result property="specifications" column="specifications"/>
+        <result property="unit" column="unit"/>
+        <result property="unitNum" column="unit_num"/>
+        <result property="unitPrice" column="unit_price"/>
+        <result property="price" column="price"/>
+    </resultMap>
+
+
+</mapper>

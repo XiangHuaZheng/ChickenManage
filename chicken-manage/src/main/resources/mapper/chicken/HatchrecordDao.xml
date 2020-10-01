@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.HatchrecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.HatchrecordEntity" id="hatchrecordMap">
+        <result property="id" column="id"/>
+        <result property="hatchTime" column="hatch_time"/>
+        <result property="hatchTemp" column="hatch_temp"/>
+        <result property="hatchHumidity" column="hatch_humidity"/>
+        <result property="doorLocation" column="door_location"/>
+        <result property="numLocation" column="num_location"/>
+        <result property="operation" column="operation"/>
+        <result property="machineNo" column="machine_no"/>
+        <result property="duty" column="duty"/>
+        <result property="changeDutyTime" column="change_duty_time"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

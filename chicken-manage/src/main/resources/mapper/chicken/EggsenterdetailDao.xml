@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.EggsenterdetailDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.EggsenterdetailEntity" id="eggsenterdetailMap">
+        <result property="id" column="id"/>
+        <result property="enterNo" column="enter_no"/>
+        <result property="category" column="category"/>
+        <result property="eggsNum" column="eggs_num"/>
+        <result property="eggsWeight" column="eggs_weight"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

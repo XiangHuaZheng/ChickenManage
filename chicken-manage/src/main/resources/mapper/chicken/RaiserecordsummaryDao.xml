@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.RaiserecordsummaryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.RaiserecordsummaryEntity" id="raiserecordsummaryMap">
+        <result property="id" column="id"/>
+        <result property="chickenName" column="chicken_name"/>
+        <result property="category" column="category"/>
+        <result property="dailyDate" column="daily_date"/>
+        <result property="feedsName" column="feeds_name"/>
+        <result property="raiseNo" column="raise_no"/>
+        <result property="specifications" column="specifications"/>
+        <result property="raiseNum" column="raise_num"/>
+        <result property="unit" column="unit"/>
+        <result property="unitPrice" column="unit_price"/>
+        <result property="price" column="price"/>
+        <result property="breeder" column="breeder"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

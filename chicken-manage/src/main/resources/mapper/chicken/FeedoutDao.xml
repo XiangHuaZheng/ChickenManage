@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.FeedoutDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.FeedoutEntity" id="feedoutMap">
+        <result property="id" column="id"/>
+        <result property="outNo" column="out_no"/>
+        <result property="outDate" column="out_date"/>
+        <result property="outCategory" column="out_category"/>
+        <result property="supplierNo" column="supplier_no"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="agent" column="agent"/>
+        <result property="sumPay" column="sum_pay"/>
+        <result property="hasPay" column="has_pay"/>
+        <result property="noPay" column="no_pay"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

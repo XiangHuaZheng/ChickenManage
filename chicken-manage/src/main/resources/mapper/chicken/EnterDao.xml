@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.chick.chicken.dao.EnterDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.chick.chicken.entity.EnterEntity" id="enterMap">
+        <result property="id" column="id"/>
+        <result property="batchNo" column="batch_no"/>
+        <result property="enterDate" column="enter_date"/>
+        <result property="supplierNo" column="supplier_no"/>
+        <result property="supplierName" column="supplier_name"/>
+        <result property="varieties" column="varieties"/>
+        <result property="num" column="num"/>
+        <result property="price" column="price"/>
+        <result property="sumPay" column="sum_pay"/>
+        <result property="hasPay" column="has_pay"/>
+        <result property="noPay" column="no_pay"/>
+        <result property="growDays" column="grow_days"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>
