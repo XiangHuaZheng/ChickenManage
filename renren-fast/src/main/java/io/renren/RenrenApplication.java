@@ -8,10 +8,11 @@
 
 package io.renren;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+@MapperScan({"com.hua.chick.chicken.dao","io.renren.modules.app.dao","io.renren.modules.job.dao","io.renren.modules.oss.dao","io.renren.modules.sys.dao"})
 @SpringBootApplication
 public class RenrenApplication {
 

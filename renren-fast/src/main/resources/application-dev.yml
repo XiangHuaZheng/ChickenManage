@@ -33,7 +33,13 @@ spring:
                     config:
                         multi-statement-allow: true
 
-
+mybatis-plus:
+    mapper-locations: classpath:/mapper/**/*.xml
+    global-config:
+        db-config:
+            id-type: auto
+            logic-delete-value: 1
+            logic-not-delete-value: 0
 ##多数据源的配置
 #dynamic:
 #  datasource:
