@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -36,6 +38,7 @@ public class DrugsrecordsummaryEntity implements Serializable {
 	/**
 	 * 日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dailyDate;
 	/**
 	 * 饲料名称

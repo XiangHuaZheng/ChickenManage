@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -27,6 +29,7 @@ public class PurchaseEntity implements Serializable {
 	/**
 	 * 进鸡日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date enterDate;
 	/**
 	 * 品种

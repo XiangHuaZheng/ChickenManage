@@ -23,12 +23,6 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="id"
-        header-align="center"
-        align="center"
-        label="id">
-      </el-table-column>
-      <el-table-column
         prop="enterNo"
         header-align="center"
         align="center"

@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -32,6 +34,7 @@ public class EnterEntity implements Serializable {
 	/**
 	 * 进鸡日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date enterDate;
 	/**
 	 * 供商编号
@@ -73,5 +76,12 @@ public class EnterEntity implements Serializable {
 	 * 备注
 	 */
 	private String remarks;
-
+	/*
+	* 审核状态
+	* */
+	private Integer pass;
+	/*
+	 * 确认状态
+	 * */
+	private Integer certain;
 }

@@ -3,6 +3,7 @@ package io.renren.chick.chicken.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.renren.chick.chicken.vo.EnterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +41,36 @@ public class EnterController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 当天数据
+     */
+    @RequestMapping("/todayList")
+    public R todayList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.todayList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 当月数据
+     */
+    @RequestMapping("/monthList")
+    public R monthList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.monthList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 当年数据
+     */
+    @RequestMapping("/yearList")
+    public R yearList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.yearList(params);
+
+        return R.ok().put("page", page);
+    }
+
 
     /**
      * 信息
@@ -55,9 +86,8 @@ public class EnterController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody EnterEntity enter){
-		enterService.save(enter);
-
+    public R save(@RequestBody EnterVo enter){
+		enterService.saveEnterVo(enter);
         return R.ok();
     }
 
@@ -65,8 +95,8 @@ public class EnterController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@RequestBody EnterEntity enter){
-		enterService.updateById(enter);
+    public R update(@RequestBody EnterVo enter){
+		enterService.updateEnterVoById(enter);
 
         return R.ok();
     }
@@ -77,7 +107,24 @@ public class EnterController {
     @RequestMapping("/delete")
     public R delete(@RequestBody Long[] ids){
 		enterService.removeByIds(Arrays.asList(ids));
+        return R.ok();
+    }
 
+    /**
+     * 审核
+     */
+    @RequestMapping("/pass")
+    public R passById(@RequestBody Long[] ids){
+        enterService.passById(ids[0]);
+        return R.ok();
+    }
+
+    /**
+     * 确认
+     */
+    @RequestMapping("/certain")
+    public R certain(@RequestBody Long[] ids){
+        enterService.certainById(ids[0]);
         return R.ok();
     }
 

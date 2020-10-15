@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -51,6 +53,7 @@ public class StaffEntity implements Serializable {
 	/**
 	 * 入职日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date jobDate;
 	/**
 	 * 0:在职  1:离职

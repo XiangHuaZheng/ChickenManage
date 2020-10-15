@@ -25,5 +25,4 @@ public class EnterdetailServiceImpl extends ServiceImpl<EnterdetailDao, Enterdet
 
         return new PageUtils(page);
     }
-
 }

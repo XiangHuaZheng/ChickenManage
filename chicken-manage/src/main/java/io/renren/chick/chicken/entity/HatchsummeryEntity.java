@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -36,6 +38,7 @@ public class HatchsummeryEntity implements Serializable {
 	/**
 	 * 上箱时间
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date caseTime;
 	/**
 	 * 照蛋数量

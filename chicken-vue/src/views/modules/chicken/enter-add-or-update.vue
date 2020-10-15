@@ -40,6 +40,19 @@
     <el-form-item label="备注" prop="remarks">
       <el-input v-model="dataForm.remarks" placeholder="备注"></el-input>
     </el-form-item>
+    明细信息<hr>
+    <el-form-item label="鸡舍号" prop="remarks">
+      <el-input v-model="dataForm.chickenNo" placeholder="鸡舍号"></el-input>
+    </el-form-item>
+    <el-form-item label="存储量" prop="remarks">
+      <el-input v-model="dataForm.storeNum" placeholder="存储量"></el-input>
+    </el-form-item>
+    <el-form-item label="类别" prop="remarks">
+      <el-input v-model="dataForm.category" placeholder="类别"></el-input>
+    </el-form-item>
+    <el-form-item label="明细备注" prop="remarks">
+      <el-input v-model="dataForm.remarks2" placeholder="明细备注"></el-input>
+    </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -66,7 +79,11 @@
           hasPay: '',
           noPay: '',
           growDays: '',
-          remarks: ''
+          remarks: '',
+          chickenNo:'',
+          storeNum:'',
+          category:'',
+          remarks2:''
         },
         dataRule: {
           batchNo: [
@@ -104,6 +121,18 @@
           ],
           remarks: [
             { required: true, message: '备注不能为空', trigger: 'blur' }
+          ],
+          chickenNo: [
+            { required: true, message: '鸡舍号不能为空', trigger: 'blur' }
+          ],
+          storeNum: [
+            { required: true, message: '存储量不能为空', trigger: 'blur' }
+          ],
+          category: [
+            { required: true, message: '目录不能为空', trigger: 'blur' }
+          ],
+          remarks2: [
+            { required: true, message: '明细备注不能为空', trigger: 'blur' }
           ]
         }
       }
@@ -133,6 +162,10 @@
                 this.dataForm.noPay = data.enter.noPay
                 this.dataForm.growDays = data.enter.growDays
                 this.dataForm.remarks = data.enter.remarks
+                this.dataForm.chickenNo=data.enter.chickenNo
+                this.dataForm.storeNum=data.enter.storeNum
+                this.dataForm.category=data.enter.category
+                this.dataForm.remarks2=data.enter.remarks2
               }
             })
           }
@@ -158,7 +191,11 @@
                 'hasPay': this.dataForm.hasPay,
                 'noPay': this.dataForm.noPay,
                 'growDays': this.dataForm.growDays,
-                'remarks': this.dataForm.remarks
+                'remarks': this.dataForm.remarks,
+                'chickenNo': this.dataForm.chickenNo,
+                'storeNum': this.dataForm.storeNum,
+                'category': this.dataForm.category,
+                'remarks2': this.dataForm.remarks2,
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

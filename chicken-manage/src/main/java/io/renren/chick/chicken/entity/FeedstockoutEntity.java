@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -24,6 +26,7 @@ public class FeedstockoutEntity implements Serializable {
 	 * 出库日期
 	 */
 	@TableId
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date outDate;
 	/**
 	 * 出库单号

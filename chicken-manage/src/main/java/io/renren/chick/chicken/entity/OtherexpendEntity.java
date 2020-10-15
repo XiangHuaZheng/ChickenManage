@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -28,6 +30,7 @@ public class OtherexpendEntity implements Serializable {
 	/**
 	 * 支出日期
 	 */
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date expendTime;
 	/**
 	 * 支出类型
