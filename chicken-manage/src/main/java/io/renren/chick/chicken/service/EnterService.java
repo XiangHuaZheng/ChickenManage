@@ -1,6 +1,8 @@
 package io.renren.chick.chicken.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import io.renren.chick.chicken.entity.EnterdetailEntity;
+import io.renren.chick.chicken.to.PassNumTo;
 import io.renren.chick.chicken.vo.EnterVo;
 import io.renren.common.utils.PageUtils;
 import io.renren.chick.chicken.entity.EnterEntity;
@@ -25,6 +27,8 @@ public interface EnterService extends IService<EnterEntity> {
 
     PageUtils yearList(Map<String, Object> params);
 
+    PageUtils passList(Map<String, Object> params);
+
     void passById(Long id);
 
     void saveEnterVo(EnterVo enter);
@@ -32,5 +36,15 @@ public interface EnterService extends IService<EnterEntity> {
     void updateEnterVoById(EnterVo enter);
 
     void certainById(Long id);
+
+    PassNumTo todayCertainList(Map<String, Object> params);
+
+    PageUtils certainList(Map<String, Object> params);
+
+    PageUtils monthCertainList(Map<String, Object> params);
+
+    PageUtils yearCertainList(Map<String, Object> params);
+
+    EnterdetailEntity getDetailById(Map<String, Object> params);
 }
 

@@ -9,8 +9,9 @@
         <el-button @click="getDataList()">当天数据</el-button>
         <el-button @click="getMonthDataList()">当月数据</el-button>
         <el-button @click="getYearDataList()">当年数据</el-button>
-        <el-button v-if="isAuth('chicken:feedout:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button v-if="isAuth('chicken:feedout:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <el-button v-if="isAuth('chicken:enter:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
+        <el-button v-if="isAuth('chicken:enter:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <el-button type="danger" @click="getPassDataList()">待审核({{passNum}})</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -26,22 +27,16 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="outNo"
+        prop="batchNo"
         header-align="center"
         align="center"
-        label="出库单号">
+        label="批次号">
       </el-table-column>
       <el-table-column
-        prop="outDate"
+        prop="enterDate"
         header-align="center"
         align="center"
-        label="出库日期">
-      </el-table-column>
-      <el-table-column
-        prop="outCategory"
-        header-align="center"
-        align="center"
-        label="出库类型">
+        label="进鸡日期">
       </el-table-column>
       <el-table-column
         prop="supplierNo"
@@ -56,10 +51,28 @@
         label="供商名称">
       </el-table-column>
       <el-table-column
-        prop="agent"
+        prop="varieties"
         header-align="center"
         align="center"
-        label="经办人">
+        label="品种">
+      </el-table-column>
+      <el-table-column
+        prop="num"
+        header-align="center"
+        align="center"
+        label="数量">
+      </el-table-column>
+      <el-table-column
+        prop="price"
+        header-align="center"
+        align="center"
+        label="单价">
+      </el-table-column>
+      <el-table-column
+        prop="growDays"
+        header-align="center"
+        align="center"
+        label="成长天数">
       </el-table-column>
       <el-table-column
         prop="remarks"
@@ -74,10 +87,10 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button  v-if="scope.row.certain==0" type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
           <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
-          <el-button v-if="scope.row.certain==0" style="color:red"  type="text" size="small" @click="passHandle(scope.row.id)">确认</el-button>
-          <el-button v-if="scope.row.certain==1"  type="text" size="small">已确认</el-button>
+          <el-button v-if="scope.row.pass==0" style="color:red"  type="text" size="small" @click="passHandle(scope.row.id)">审核</el-button>
+          <el-button v-if="scope.row.pass==1"  type="text" size="small" >已审核</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -96,7 +109,7 @@
 </template>
 
 <script>
-  import AddOrUpdate from './feedout-add-or-update'
+  import AddOrUpdate from './enter-add-or-update'
   export default {
     data () {
       return {
@@ -109,7 +122,13 @@
         totalPage: 0,
         dataListLoading: false,
         dataListSelections: [],
-        addOrUpdateVisible: false
+        addOrUpdateVisible: false,
+        passNum:0,
+        batchNo:'',
+        chickenNo:'',
+        storeNum:'',
+        category:'',
+        remarks:''
       }
     },
     components: {
@@ -123,7 +142,7 @@
       getDataList () {
         this.dataListLoading = true
         this.$http({
-          url: this.$http.adornUrl('/chicken/feedout/todayList'),
+          url: this.$http.adornUrl('/chicken/enter/todayCertainList'),
           method: 'get',
           params: this.$http.adornParams({
             'page': this.pageIndex,
@@ -134,6 +153,7 @@
           if (data && data.code === 0) {
             this.dataList = data.page.list
             this.totalPage = data.page.totalCount
+            this.passNum=data.size
           } else {
             this.dataList = []
             this.totalPage = 0
@@ -141,11 +161,10 @@
           this.dataListLoading = false
         })
       },
-
       getAllDataList () {
         this.dataListLoading = true
         this.$http({
-          url: this.$http.adornUrl('/chicken/feedout/list'),
+          url: this.$http.adornUrl('/chicken/enter/certainList'),
           method: 'get',
           params: this.$http.adornParams({
             'page': this.pageIndex,
@@ -166,7 +185,7 @@
       getMonthDataList () {
         this.dataListLoading = true
         this.$http({
-          url: this.$http.adornUrl('/chicken/feedout/monthList'),
+          url: this.$http.adornUrl('/chicken/enter/monthCertainList'),
           method: 'get',
           params: this.$http.adornParams({
             'page': this.pageIndex,
@@ -187,7 +206,7 @@
       getYearDataList () {
         this.dataListLoading = true
         this.$http({
-          url: this.$http.adornUrl('/chicken/feedout/yearList'),
+          url: this.$http.adornUrl('/chicken/enter/yearCertainList'),
           method: 'get',
           params: this.$http.adornParams({
             'page': this.pageIndex,
@@ -203,6 +222,50 @@
             this.totalPage = 0
           }
           this.dataListLoading = false
+        })
+      },
+      getPassDataList () {
+        this.dataListLoading = true
+        this.$http({
+          url: this.$http.adornUrl('/chicken/enter/passList'),
+          method: 'get',
+          params: this.$http.adornParams({
+            'page': this.pageIndex,
+            'limit': this.pageSize,
+            'key': this.dataForm.key
+          })
+        }).then(({data}) => {
+          if (data && data.code === 0) {
+            this.dataList = data.page.list
+            this.totalPage = data.page.totalCount
+          } else {
+            this.dataList = []
+            this.totalPage = 0
+          }
+          this.dataListLoading = false
+        })
+      },
+      getDetail(id){
+        this.$http({
+          url: this.$http.adornUrl('/chicken/enter/detail'),
+          method: 'get',
+          params: this.$http.adornParams({
+            'id': id
+          })
+        }).then(({data}) => {
+          if (data&& data.code === 0) {
+            this.batchNo=data.detail.batchNo
+            this.chickenNo=data.detail.chickenNo
+            this.storeNum=data.detail.storeNum
+            this.category=data.detail.category
+            this.remarks=data.detail.remarks
+          } else {
+            this.batchNo=''
+            this.chickenNo=''
+            this.storeNum=''
+            this.category=''
+            this.remarks=''
+          }
         })
       },
       // 每页数
@@ -238,7 +301,7 @@
           type: 'warning'
         }).then(() => {
           this.$http({
-            url: this.$http.adornUrl('/chicken/feedout/delete'),
+            url: this.$http.adornUrl('/chicken/enter/delete'),
             method: 'post',
             data: this.$http.adornData(ids, false)
           }).then(({data}) => {
@@ -262,23 +325,24 @@
         var ids = id ? [id] : this.dataListSelections.map(item => {
           return item.id
         })
-        this.$confirm(`确定进行确认操作?`, '提示', {
+        this.getDetail(id)
+        this.$confirm(`确定进行审核操作? {批次号:` + this.batchNo+ `,鸡舍号:`+ this.chickenNo +`,存储量:`+ this.storeNum +`,类别:`+ this.category +`,备注:`+ this.remarks +`}`, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           this.$http({
-            url: this.$http.adornUrl('/chicken/feedout/certain'),
+            url: this.$http.adornUrl('/chicken/enter/pass'),
             method: 'post',
             data: this.$http.adornData(ids, false)
           }).then(({data}) => {
             if (data && data.code === 0) {
               this.$message({
-                message: '确认成功',
+                message: '审核成功',
                 type: 'success',
                 duration: 1500,
                 onClose: () => {
-                  this.getDataList()
+                  this.getPassDataList()
                 }
               })
             } else {

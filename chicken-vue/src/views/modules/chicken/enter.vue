@@ -68,24 +68,6 @@
         label="单价">
       </el-table-column>
       <el-table-column
-        prop="sumPay"
-        header-align="center"
-        align="center"
-        label="应付金额">
-      </el-table-column>
-      <el-table-column
-        prop="hasPay"
-        header-align="center"
-        align="center"
-        label="已付金额">
-      </el-table-column>
-      <el-table-column
-        prop="noPay"
-        header-align="center"
-        align="center"
-        label="未付金额">
-      </el-table-column>
-      <el-table-column
         prop="growDays"
         header-align="center"
         align="center"
@@ -106,7 +88,8 @@
         <template slot-scope="scope">
           <el-button  v-if="scope.row.certain==0" type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
           <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
-          <el-button v-if="scope.row.certain==0"  type="text" size="small" @click="passHandle(scope.row.id)">确认</el-button>
+          <el-button v-if="scope.row.certain==0" style="color:red"  type="text" size="small" @click="passHandle(scope.row.id)">确认</el-button>
+          <el-button v-if="scope.row.certain==1"  type="text" size="small">已确认</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -138,9 +121,7 @@
         totalPage: 0,
         dataListLoading: false,
         dataListSelections: [],
-        addOrUpdateVisible: false,
-        updateValue:true,
-        certainValue:true
+        addOrUpdateVisible: false
       }
     },
     components: {
@@ -152,7 +133,6 @@
     methods: {
       // 获取数据列表
       getDataList () {
-        this.passValue=false
         this.dataListLoading = true
         this.$http({
           url: this.$http.adornUrl('/chicken/enter/todayList'),
@@ -174,7 +154,6 @@
         })
       },
       getAllDataList () {
-        this.passValue=false
         this.dataListLoading = true
         this.$http({
           url: this.$http.adornUrl('/chicken/enter/list'),
@@ -196,7 +175,6 @@
         })
       },
       getMonthDataList () {
-        this.passValue=false
         this.dataListLoading = true
         this.$http({
           url: this.$http.adornUrl('/chicken/enter/monthList'),
@@ -218,7 +196,6 @@
         })
       },
       getYearDataList () {
-        this.passValue=false
         this.dataListLoading = true
         this.$http({
           url: this.$http.adornUrl('/chicken/enter/yearList'),
@@ -312,7 +289,7 @@
                 type: 'success',
                 duration: 1500,
                 onClose: () => {
-                  this.getPassDataList()
+                  this.getDataList()
                 }
               })
             } else {

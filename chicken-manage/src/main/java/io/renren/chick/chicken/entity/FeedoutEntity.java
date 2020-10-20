@@ -53,20 +53,16 @@ public class FeedoutEntity implements Serializable {
 	 */
 	private String agent;
 	/**
-	 * 应付金额
-	 */
-	private BigDecimal sumPay;
-	/**
-	 * 已付金额
-	 */
-	private BigDecimal hasPay;
-	/**
-	 * 未付金额
-	 */
-	private BigDecimal noPay;
-	/**
 	 * 备注
 	 */
 	private String remarks;
 
+	/*
+	 * 审核状态
+	 * */
+	private Integer pass;
+	/*
+	 * 确认状态
+	 * */
+	private Integer certain;
 }

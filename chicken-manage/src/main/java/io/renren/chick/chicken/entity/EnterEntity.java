@@ -56,18 +56,7 @@ public class EnterEntity implements Serializable {
 	 * 单价
 	 */
 	private BigDecimal price;
-	/**
-	 * 应付金额
-	 */
-	private BigDecimal sumPay;
-	/**
-	 * 已付金额
-	 */
-	private BigDecimal hasPay;
-	/**
-	 * 未付金额
-	 */
-	private BigDecimal noPay;
+
 	/**
 	 * 成长天数
 	 */

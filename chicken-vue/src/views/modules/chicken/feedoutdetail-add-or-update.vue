@@ -4,8 +4,8 @@
     :close-on-click-modal="false"
     :visible.sync="visible">
     <el-form :model="dataForm" :rules="dataRule" ref="dataForm" @keyup.enter.native="dataFormSubmit()" label-width="80px">
-    <el-form-item label="入库单号" prop="outNo">
-      <el-input v-model="dataForm.outNo" placeholder="入库单号"></el-input>
+    <el-form-item label="出库单号" prop="outNo">
+      <el-input v-model="dataForm.outNo" placeholder="出库单号"></el-input>
     </el-form-item>
     <el-form-item label="编号" prop="detailNo">
       <el-input v-model="dataForm.detailNo" placeholder="编号"></el-input>
@@ -27,9 +27,6 @@
     </el-form-item>
     <el-form-item label="单价" prop="unitPrice">
       <el-input v-model="dataForm.unitPrice" placeholder="单价"></el-input>
-    </el-form-item>
-    <el-form-item label="金额" prop="price">
-      <el-input v-model="dataForm.price" placeholder="金额"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -53,12 +50,11 @@
           specifications: '',
           unit: '',
           unitNum: '',
-          unitPrice: '',
-          price: ''
+          unitPrice: ''
         },
         dataRule: {
           outNo: [
-            { required: true, message: '入库单号不能为空', trigger: 'blur' }
+            { required: true, message: '出库单号不能为空', trigger: 'blur' }
           ],
           detailNo: [
             { required: true, message: '编号不能为空', trigger: 'blur' }
@@ -80,9 +76,6 @@
           ],
           unitPrice: [
             { required: true, message: '单价不能为空', trigger: 'blur' }
-          ],
-          price: [
-            { required: true, message: '金额不能为空', trigger: 'blur' }
           ]
         }
       }
@@ -108,7 +101,6 @@
                 this.dataForm.unit = data.feedoutdetail.unit
                 this.dataForm.unitNum = data.feedoutdetail.unitNum
                 this.dataForm.unitPrice = data.feedoutdetail.unitPrice
-                this.dataForm.price = data.feedoutdetail.price
               }
             })
           }
@@ -130,8 +122,7 @@
                 'specifications': this.dataForm.specifications,
                 'unit': this.dataForm.unit,
                 'unitNum': this.dataForm.unitNum,
-                'unitPrice': this.dataForm.unitPrice,
-                'price': this.dataForm.price
+                'unitPrice': this.dataForm.unitPrice
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

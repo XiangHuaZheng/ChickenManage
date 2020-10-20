@@ -11,50 +11,33 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
- * 饲料入库
+ * 应收表
  * 
  * @author zhengXiangHua
  * @email 912358463@qq.com
- * @date 2020-10-01 15:30:45
+ * @date 2020-10-16 15:05:11
  */
 @Data
-@TableName("FeedEnter")
-public class FeedenterEntity implements Serializable {
+@TableName("ShouldReceive")
+public class ShouldreceiveEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * id
+	 * 费用名称
 	 */
-	@TableId
-	private Long id;
+	private String name;
 	/**
-	 * 入库单号
+	 * 费用类型 
 	 */
-	private Long enterNo;
+	private Integer category;
 	/**
-	 * 入库日期
+	 * 日期
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date enterDate;
+	private Date time;
 	/**
-	 * 入库类型
+	 * 应收金额
 	 */
-	private String enterCategory;
-	/**
-	 * 供商编号
-	 */
-	private Long supplierNo;
-	/**
-	 * 供商名称
-	 */
-	private String supplierName;
-	/**
-	 * 经办人
-	 */
-	private String agent;
-	/**
-	 * 备注
-	 */
-	private String remarks;
+	private BigDecimal incomePrice;
 
 }

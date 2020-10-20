@@ -13,11 +13,10 @@
         <result property="varieties" column="varieties"/>
         <result property="num" column="num"/>
         <result property="price" column="price"/>
-        <result property="sumPay" column="sum_pay"/>
-        <result property="hasPay" column="has_pay"/>
-        <result property="noPay" column="no_pay"/>
         <result property="growDays" column="grow_days"/>
         <result property="remarks" column="remarks"/>
+        <result property="pass" column="pass"/>
+        <result property="certain" column="certain"/>
     </resultMap>
 
 

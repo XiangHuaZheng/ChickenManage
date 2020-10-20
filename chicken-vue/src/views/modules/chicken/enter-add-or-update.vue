@@ -25,15 +25,6 @@
     <el-form-item label="单价" prop="price">
       <el-input v-model="dataForm.price" placeholder="单价"></el-input>
     </el-form-item>
-    <el-form-item label="应付金额" prop="sumPay">
-      <el-input v-model="dataForm.sumPay" placeholder="应付金额"></el-input>
-    </el-form-item>
-    <el-form-item label="已付金额" prop="hasPay">
-      <el-input v-model="dataForm.hasPay" placeholder="已付金额"></el-input>
-    </el-form-item>
-    <el-form-item label="未付金额" prop="noPay">
-      <el-input v-model="dataForm.noPay" placeholder="未付金额"></el-input>
-    </el-form-item>
     <el-form-item label="成长天数" prop="growDays">
       <el-input v-model="dataForm.growDays" placeholder="成长天数"></el-input>
     </el-form-item>
@@ -75,9 +66,6 @@
           varieties: '',
           num: '',
           price: '',
-          sumPay: '',
-          hasPay: '',
-          noPay: '',
           growDays: '',
           remarks: '',
           chickenNo:'',
@@ -106,15 +94,6 @@
           ],
           price: [
             { required: true, message: '单价不能为空', trigger: 'blur' }
-          ],
-          sumPay: [
-            { required: true, message: '应付金额不能为空', trigger: 'blur' }
-          ],
-          hasPay: [
-            { required: true, message: '已付金额不能为空', trigger: 'blur' }
-          ],
-          noPay: [
-            { required: true, message: '未付金额不能为空', trigger: 'blur' }
           ],
           growDays: [
             { required: true, message: '成长天数不能为空', trigger: 'blur' }
@@ -157,9 +136,6 @@
                 this.dataForm.varieties = data.enter.varieties
                 this.dataForm.num = data.enter.num
                 this.dataForm.price = data.enter.price
-                this.dataForm.sumPay = data.enter.sumPay
-                this.dataForm.hasPay = data.enter.hasPay
-                this.dataForm.noPay = data.enter.noPay
                 this.dataForm.growDays = data.enter.growDays
                 this.dataForm.remarks = data.enter.remarks
                 this.dataForm.chickenNo=data.enter.chickenNo
@@ -187,9 +163,6 @@
                 'varieties': this.dataForm.varieties,
                 'num': this.dataForm.num,
                 'price': this.dataForm.price,
-                'sumPay': this.dataForm.sumPay,
-                'hasPay': this.dataForm.hasPay,
-                'noPay': this.dataForm.noPay,
                 'growDays': this.dataForm.growDays,
                 'remarks': this.dataForm.remarks,
                 'chickenNo': this.dataForm.chickenNo,

@@ -3,13 +3,11 @@ package io.renren.chick.chicken.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import io.renren.chick.chicken.entity.EnterdetailEntity;
+import io.renren.chick.chicken.to.PassNumTo;
 import io.renren.chick.chicken.vo.EnterVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.renren.chick.chicken.entity.EnterEntity;
 import io.renren.chick.chicken.service.EnterService;
@@ -42,6 +40,16 @@ public class EnterController {
     }
 
     /**
+     * 待审核列表
+     */
+    @RequestMapping("/certainList")
+    public R certainList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.certainList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
      * 当天数据
      */
     @RequestMapping("/todayList")
@@ -49,6 +57,16 @@ public class EnterController {
         PageUtils page = enterService.todayList(params);
 
         return R.ok().put("page", page);
+    }
+
+    /**
+     * 当天待审核数据
+     */
+    @RequestMapping("/todayCertainList")
+    public R todayCertainList(@RequestParam Map<String, Object> params){
+        PassNumTo to = enterService.todayCertainList(params);
+
+        return R.ok().put("page", to.getPageUtils()).put("size",to.getPassSize());
     }
 
     /**
@@ -62,11 +80,41 @@ public class EnterController {
     }
 
     /**
+     * 当月待审核数据
+     */
+    @RequestMapping("/monthCertainList")
+    public R monthCertainList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.monthCertainList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
      * 当年数据
      */
     @RequestMapping("/yearList")
     public R yearList(@RequestParam Map<String, Object> params){
         PageUtils page = enterService.yearList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 当年待审核数据
+     */
+    @RequestMapping("/yearCertainList")
+    public R yearCertainList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.yearCertainList(params);
+
+        return R.ok().put("page", page);
+    }
+
+    /**
+     * 待审核数据
+     */
+    @RequestMapping("/passList")
+    public R passList(@RequestParam Map<String, Object> params){
+        PageUtils page = enterService.passList(params);
 
         return R.ok().put("page", page);
     }
@@ -128,4 +176,12 @@ public class EnterController {
         return R.ok();
     }
 
+    /**
+     * 获取进鸡详情
+     */
+    @GetMapping("/detail")
+    public R detail(@RequestParam Map<String, Object> params){
+        EnterdetailEntity enterdetailEntity = enterService.getDetailById(params);
+        return R.ok().put("detail",enterdetailEntity);
+    }
 }
