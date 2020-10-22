@@ -57,9 +57,5 @@ public class FeedenterdetailEntity implements Serializable {
 	 * 单价
 	 */
 	private BigDecimal unitPrice;
-	/**
-	 * 金额
-	 */
-	private BigDecimal price;
 
 }

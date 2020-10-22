@@ -57,4 +57,13 @@ public class FeedenterEntity implements Serializable {
 	 */
 	private String remarks;
 
+
+	/*
+	 * 审核状态
+	 * */
+	private Integer pass;
+	/*
+	 * 确认状态
+	 * */
+	private Integer certain;
 }

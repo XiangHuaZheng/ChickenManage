@@ -71,12 +71,6 @@
         label="单价">
       </el-table-column>
       <el-table-column
-        prop="price"
-        header-align="center"
-        align="center"
-        label="金额">
-      </el-table-column>
-      <el-table-column
         fixed="right"
         header-align="center"
         align="center"

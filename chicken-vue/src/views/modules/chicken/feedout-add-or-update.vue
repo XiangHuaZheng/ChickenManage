@@ -142,6 +142,7 @@
                 this.dataForm.supplierNo = data.feedout.supplierNo
                 this.dataForm.supplierName = data.feedout.supplierName
                 this.dataForm.agent = data.feedout.agent
+                this.dataForm.remarks = data.feedenter.remarks
                 this.dataForm.detailNo = data.feedout.detailNo
                 this.dataForm.name = data.feedout.name
                 this.dataForm.category = data.feedout.category
@@ -169,6 +170,7 @@
                 'supplierNo': this.dataForm.supplierNo,
                 'supplierName': this.dataForm.supplierName,
                 'agent': this.dataForm.agent,
+                'remarks': this.dataForm.remarks,
                 'detailNo': this.dataForm.detailNo,
                 'name': this.dataForm.name,
                 'category': this.dataForm.category,

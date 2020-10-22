@@ -22,17 +22,30 @@
     <el-form-item label="经办人" prop="agent">
       <el-input v-model="dataForm.agent" placeholder="经办人"></el-input>
     </el-form-item>
-    <el-form-item label="应付金额" prop="sumPay">
-      <el-input v-model="dataForm.sumPay" placeholder="应付金额"></el-input>
-    </el-form-item>
-    <el-form-item label="已付金额" prop="hasPay">
-      <el-input v-model="dataForm.hasPay" placeholder="已付金额"></el-input>
-    </el-form-item>
-    <el-form-item label="未付金额" prop="noPay">
-      <el-input v-model="dataForm.noPay" placeholder="未付金额"></el-input>
-    </el-form-item>
     <el-form-item label="备注" prop="remarks">
       <el-input v-model="dataForm.remarks" placeholder="备注"></el-input>
+    </el-form-item>
+    明细信息<hr>
+    <el-form-item label="编号" prop="detailNo">
+      <el-input v-model="dataForm.detailNo" placeholder="编号"></el-input>
+    </el-form-item>
+    <el-form-item label="名称" prop="name">
+      <el-input v-model="dataForm.name" placeholder="名称"></el-input>
+    </el-form-item>
+    <el-form-item label="类别" prop="category">
+      <el-input v-model="dataForm.category" placeholder="类别"></el-input>
+    </el-form-item>
+    <el-form-item label="规格" prop="specifications">
+      <el-input v-model="dataForm.specifications" placeholder="规格"></el-input>
+    </el-form-item>
+    <el-form-item label="单位" prop="unit">
+      <el-input v-model="dataForm.unit" placeholder="单位"></el-input>
+    </el-form-item>
+    <el-form-item label="数量" prop="unitNum">
+      <el-input v-model="dataForm.unitNum" placeholder="数量"></el-input>
+    </el-form-item>
+    <el-form-item label="单价" prop="unitPrice">
+      <el-input v-model="dataForm.unitPrice" placeholder="单价"></el-input>
     </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
@@ -55,10 +68,14 @@
           supplierNo: '',
           supplierName: '',
           agent: '',
-          sumPay: '',
-          hasPay: '',
-          noPay: '',
-          remarks: ''
+          remarks: '',
+          detailNo:'',
+          name:'',
+          category:'',
+          specifications:'',
+          unit:'',
+          unitNum:'',
+          unitPrice:''
         },
         dataRule: {
           enterNo: [
@@ -79,17 +96,29 @@
           agent: [
             { required: true, message: '经办人不能为空', trigger: 'blur' }
           ],
-          sumPay: [
-            { required: true, message: '应付金额不能为空', trigger: 'blur' }
-          ],
-          hasPay: [
-            { required: true, message: '已付金额不能为空', trigger: 'blur' }
-          ],
-          noPay: [
-            { required: true, message: '未付金额不能为空', trigger: 'blur' }
-          ],
           remarks: [
             { required: true, message: '备注不能为空', trigger: 'blur' }
+          ],
+           detailNo: [
+            { required: true, message: '编号不能为空', trigger: 'blur' }
+          ],
+          name: [
+            { required: true, message: '名称不能为空', trigger: 'blur' }
+          ],
+          category: [
+            { required: true, message: '类别不能为空', trigger: 'blur' }
+          ],
+          specifications: [
+            { required: true, message: '规格不能为空', trigger: 'blur' }
+          ],
+          unit: [
+            { required: true, message: '单位不能为空', trigger: 'blur' }
+          ],
+          unitNum: [
+            { required: true, message: '数量不能为空', trigger: 'blur' }
+          ],
+          unitPrice: [
+            { required: true, message: '单价不能为空', trigger: 'blur' }
           ]
         }
       }
@@ -113,10 +142,14 @@
                 this.dataForm.supplierNo = data.feedenter.supplierNo
                 this.dataForm.supplierName = data.feedenter.supplierName
                 this.dataForm.agent = data.feedenter.agent
-                this.dataForm.sumPay = data.feedenter.sumPay
-                this.dataForm.hasPay = data.feedenter.hasPay
-                this.dataForm.noPay = data.feedenter.noPay
                 this.dataForm.remarks = data.feedenter.remarks
+                this.dataForm.detailNo = data.feedout.detailNo
+                this.dataForm.name = data.feedout.name
+                this.dataForm.category = data.feedout.category
+                this.dataForm.specifications = data.feedout.specifications
+                this.dataForm.unit = data.feedout.unit
+                this.dataForm.unitNum = data.feedout.unitNum
+                this.dataForm.unitPrice = data.feedout.unitPrice
               }
             })
           }
@@ -137,10 +170,14 @@
                 'supplierNo': this.dataForm.supplierNo,
                 'supplierName': this.dataForm.supplierName,
                 'agent': this.dataForm.agent,
-                'sumPay': this.dataForm.sumPay,
-                'hasPay': this.dataForm.hasPay,
-                'noPay': this.dataForm.noPay,
-                'remarks': this.dataForm.remarks
+                'remarks': this.dataForm.remarks,
+                 'detailNo': this.dataForm.detailNo,
+                'name': this.dataForm.name,
+                'category': this.dataForm.category,
+                'specifications': this.dataForm.specifications,
+                'unit': this.dataForm.unit,
+                'unitNum': this.dataForm.unitNum,
+                'unitPrice': this.dataForm.unitPrice
               })
             }).then(({data}) => {
               if (data && data.code === 0) {

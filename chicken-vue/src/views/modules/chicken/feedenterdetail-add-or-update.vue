@@ -28,9 +28,6 @@
     <el-form-item label="单价" prop="unitPrice">
       <el-input v-model="dataForm.unitPrice" placeholder="单价"></el-input>
     </el-form-item>
-    <el-form-item label="金额" prop="price">
-      <el-input v-model="dataForm.price" placeholder="金额"></el-input>
-    </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">取消</el-button>
@@ -53,8 +50,7 @@
           specifications: '',
           unit: '',
           unitNum: '',
-          unitPrice: '',
-          price: ''
+          unitPrice: ''
         },
         dataRule: {
           enterNo: [
@@ -80,9 +76,6 @@
           ],
           unitPrice: [
             { required: true, message: '单价不能为空', trigger: 'blur' }
-          ],
-          price: [
-            { required: true, message: '金额不能为空', trigger: 'blur' }
           ]
         }
       }
@@ -108,7 +101,6 @@
                 this.dataForm.unit = data.feedenterdetail.unit
                 this.dataForm.unitNum = data.feedenterdetail.unitNum
                 this.dataForm.unitPrice = data.feedenterdetail.unitPrice
-                this.dataForm.price = data.feedenterdetail.price
               }
             })
           }
@@ -130,8 +122,7 @@
                 'specifications': this.dataForm.specifications,
                 'unit': this.dataForm.unit,
                 'unitNum': this.dataForm.unitNum,
-                'unitPrice': this.dataForm.unitPrice,
-                'price': this.dataForm.price
+                'unitPrice': this.dataForm.unitPrice
               })
             }).then(({data}) => {
               if (data && data.code === 0) {
